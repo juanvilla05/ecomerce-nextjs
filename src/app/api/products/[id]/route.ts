@@ -19,7 +19,7 @@ export async function GET(
     const product = await response.json();
     
     return NextResponse.json(product);
-  } catch {
+  } catch (error) {
     return NextResponse.json(
       { error: 'Error al obtener el producto' },
       { status: 500 }

@@ -1,7 +1,3 @@
-/**
- * Tarjeta de Producto
- * Muestra info del producto con opciones de like y agregar al carrito
- */
 "use client";
 
 import { useState } from 'react';
@@ -37,14 +33,12 @@ export default function ProductCard({ product }: ProductCardProps) {
   const isLiked = likedProducts.includes(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Agrega el producto al carrito
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch(addItem({ id, name: title, quantity: 1, price }));
     alert(`${title} añadido al carrito.`);
   };
 
-  // Marca/desmarca el producto como favorito y sincroniza con localStorage
   const handleToggleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
     dispatch(toggleLike(id));
@@ -58,7 +52,6 @@ export default function ProductCard({ product }: ProductCardProps) {
     }
   };
 
-  // Abre el modal con detalles del producto
   const handleCardClick = () => {
     setIsModalOpen(true);
   };
@@ -68,7 +61,6 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className={styles.card} onClick={handleCardClick}>
         <div className={styles.imageContainer}>
           <Image src={image} alt={title} width={200} height={200} className={styles.image} />
-          {/* Botón de like con estado visual */}
           <button 
             className={`${styles.likeButton} ${isLiked ? styles.liked : ''}`}
             onClick={handleToggleLike}
@@ -85,7 +77,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         </button>
       </div>
       
-      {/* Modal que se abre al hacer click en la tarjeta */}
       <ProductModal 
         productId={id}
         isOpen={isModalOpen}

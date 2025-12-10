@@ -1,7 +1,3 @@
-/**
- * Componente de carga (spinner)
- * Muestra un indicador visual mientras se cargan datos
- */
 export default function LoadingSpinner() {
   return (
     <div style={{
@@ -12,7 +8,6 @@ export default function LoadingSpinner() {
       padding: '3rem',
       minHeight: '300px',
     }}>
-      {/* Spinner animado */}
       <div style={{
         width: '50px',
         height: '50px',

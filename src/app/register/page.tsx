@@ -1,15 +1,9 @@
-/**
- * Página de Registro de Usuarios
- * Formulario completo para crear una nueva cuenta
- * Envía datos a la API de FakeStore
- */
 "use client";
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
-  // Estado del formulario con todos los campos requeridos
   const [formData, setFormData] = useState({
     email: '',
     username: '',
@@ -23,7 +17,6 @@ export default function RegisterPage() {
   const [success, setSuccess] = useState(false);
   const router = useRouter();
 
-  // Actualiza el estado cuando el usuario escribe
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -31,7 +24,6 @@ export default function RegisterPage() {
     });
   };
 
-  // Envía el formulario a la API de registro
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -66,7 +58,6 @@ export default function RegisterPage() {
 
       const data = await response.json();
 
-      // Si el registro es exitoso, redirige al login
       if (data.id) {
         setSuccess(true);
         setTimeout(() => {
@@ -166,14 +157,12 @@ export default function RegisterPage() {
     <div style={containerStyle}>
       <div style={formWrapperStyle}>
         <h1 style={titleStyle}>Crear Cuenta</h1>
-        {/* Mensaje de confirmación */}
         {success && (
           <p style={successStyle}>
             ¡Registro exitoso! Redirigiendo al login...
           </p>
         )}
         <form style={formStyle} onSubmit={handleSubmit}>
-          {/* Campo de nombre */}
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Nombre</label>
             <input
@@ -185,7 +174,6 @@ export default function RegisterPage() {
               required
             />
           </div>
-          {/* Campo de apellido */}
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Apellido</label>
             <input
@@ -197,7 +185,6 @@ export default function RegisterPage() {
               required
             />
           </div>
-          {/* Campo de email */}
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Email</label>
             <input
@@ -209,7 +196,6 @@ export default function RegisterPage() {
               required
             />
           </div>
-          {/* Campo de usuario */}
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Nombre de usuario</label>
             <input
@@ -221,7 +207,6 @@ export default function RegisterPage() {
               required
             />
           </div>
-          {/* Campo de contraseña */}
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Contraseña</label>
             <input
@@ -233,7 +218,6 @@ export default function RegisterPage() {
               required
             />
           </div>
-          {/* Campo de teléfono */}
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Teléfono</label>
             <input
@@ -245,7 +229,6 @@ export default function RegisterPage() {
               required
             />
           </div>
-          {/* Campo de ciudad */}
           <div style={inputGroupStyle}>
             <label style={labelStyle}>Ciudad</label>
             <input
@@ -257,7 +240,6 @@ export default function RegisterPage() {
               required
             />
           </div>
-          {/* Mensaje de error */}
           {error && <p style={errorStyle}>{error}</p>}
           <button
             type="submit"
