@@ -2,6 +2,9 @@
 
 Aplicación de comercio electrónico moderna construida con Next.js 16, TypeScript, Redux y NextAuth.
 
+🔗 **Demo en vivo:** [Próximamente en Vercel]  
+📦 **Repositorio:** https://github.com/juanvilla05/ecomerce-nextjs
+
 ## 🚀 Características Principales
 
 ### ✨ Funcionalidades Implementadas
@@ -174,27 +177,43 @@ npm run lint     # Ejecutar linter
 
 ## 📦 Despliegue en Vercel
 
-### Pasos para el Despliegue
+### Configuración Rápida
 
-1. **Conectar repositorio a Vercel**
+1. **Conectar con GitHub:**
    - Ve a [vercel.com](https://vercel.com)
-   - Importa tu repositorio de GitHub
+   - Inicia sesión con GitHub
+   - Importa el repositorio `ecomerce-nextjs`
 
-2. **Configurar variables de entorno**
-   ```
+2. **Variables de Entorno Requeridas:**
+   ```env
    NEXTAUTH_URL=https://tu-dominio.vercel.app
-   NEXTAUTH_SECRET=genera-un-secreto-seguro
+   NEXTAUTH_SECRET=tu-secreto-generado
    ```
 
-3. **Desplegar**
+3. **Generar NEXTAUTH_SECRET:**
+   ```bash
+   openssl rand -base64 32
+   ```
+
+4. **Deploy:**
    - Vercel desplegará automáticamente
-   - Cada push a main despliega automáticamente
+   - El despliegue toma 2-3 minutos
+   - Cada push a `main` despliega automáticamente
 
-### Generar NEXTAUTH_SECRET
+### Actualizar NEXTAUTH_URL después del primer despliegue
 
-```bash
-openssl rand -base64 32
-```
+Después del primer despliegue, Vercel te dará una URL (ej: `https://ecomerce-nextjs-xyz.vercel.app`):
+
+1. Ve a tu proyecto en Vercel
+2. Settings → Environment Variables
+3. Edita `NEXTAUTH_URL` con la URL real que te dio Vercel
+4. Redeploy el proyecto
+
+### Despliegues Automáticos
+
+✅ Cada `git push` a la rama `main` despliega automáticamente  
+✅ Preview deployments para Pull Requests  
+✅ Rollback instantáneo a versiones anteriores
 
 ## 📚 Documentación Adicional
 
