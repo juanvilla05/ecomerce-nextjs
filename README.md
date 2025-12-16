@@ -1,36 +1,233 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ Plataforma de E-Commerce - Next.js
 
-## Getting Started
+Aplicación de comercio electrónico moderna construida con Next.js 16, TypeScript, Redux y NextAuth.
 
-First, run the development server:
+## 🚀 Características Principales
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### ✨ Funcionalidades Implementadas
+
+- **🔐 Autenticación y Autorización**
+  - Sistema completo con NextAuth
+  - Login con credenciales (FakeStoreAPI)
+  - Protección de rutas con middleware
+  - Roles de usuario (Admin y User)
+  - Sesiones JWT con duración de 30 días
+
+- **🛒 Carrito de Compras**
+  - Gestión de estado con Redux Toolkit
+  - Agregar/eliminar productos
+  - Actualización de cantidades
+  - Cálculo de subtotal, IVA (19%) y total
+  - Envío del carrito a endpoint externo
+
+- **👤 Gestión de Usuarios**
+  - Página de perfil protegida
+  - Visualización de información del usuario
+  - Indicadores de rol (Admin/User)
+
+- **🎨 Productos**
+  - Catálogo de productos con paginación
+  - Página de detalle individual por producto
+  - Sistema de "Me gusta" persistente
+  - Modal de vista rápida
+  - Filtrado por categorías
+
+- **⚙️ Panel de Administración**
+  - Acceso exclusivo para administradores
+  - Creación de nuevos productos
+  - Interfaz intuitiva y moderna
+
+## 🏗️ Tecnologías Utilizadas
+
+- **Framework:** Next.js 16.0.10 (App Router)
+- **Lenguaje:** TypeScript 5
+- **Estado Global:** Redux Toolkit 2.11.2
+- **Autenticación:** NextAuth 5.0.0-beta.30
+- **Estilos:** SCSS Modules + CSS Custom Properties
+- **UI:** React 19.2.1
+- **API:** FakeStoreAPI (https://fakestoreapi.com)
+
+## 📁 Estructura del Proyecto
+
+```
+prueba/
+├── src/
+│   ├── app/                    # Rutas de la aplicación
+│   │   ├── admin/              # Panel de administración
+│   │   ├── api/                # Rutas API
+│   │   │   └── auth/           # Endpoints de NextAuth
+│   │   ├── cart/               # Carrito de compras
+│   │   ├── components/         # Componentes reutilizables
+│   │   ├── hooks/              # Custom hooks
+│   │   ├── login/              # Página de inicio de sesión
+│   │   ├── product/[id]/       # Detalle de producto (ruta dinámica)
+│   │   ├── profile/            # Perfil de usuario
+│   │   ├── register/           # Registro de usuarios
+│   │   ├── slices/             # Redux slices
+│   │   ├── types/              # Tipos TypeScript
+│   │   └── store.ts            # Redux store
+│   └── lib/
+│       └── auth.ts             # Configuración de NextAuth
+├── middleware.ts               # Middleware de protección de rutas
+├── .env.local                  # Variables de entorno (no subir a git)
+└── .env.example                # Ejemplo de variables de entorno
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚦 Inicio Rápido
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerrequisitos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18.x o superior
+- npm, yarn, pnpm o bun
 
-## Learn More
+### Instalación
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clonar el repositorio**
+```bash
+git clone <tu-repositorio>
+cd prueba
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Instalar dependencias**
+```bash
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Configurar variables de entorno**
+```bash
+cp .env.example .env.local
+```
 
-## Deploy on Vercel
+Edita `.env.local` con tus valores:
+```env
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=tu-secreto-super-seguro-aqui
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Ejecutar en desarrollo**
+```bash
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+
+## 🔑 Credenciales de Prueba
+
+### Usuario Administrador
+- **Usuario:** `mor_2314`
+- **Contraseña:** `83r5^_`
+- **Permisos:** Acceso completo + Panel Admin
+
+### Usuarios Regulares
+- **Usuario:** `johnd`, `derek`, `david_r`
+- **Contraseñas:** Ver [ENDPOINTS.md](./ENDPOINTS.md)
+- **Permisos:** Acceso a perfil y carrito
+
+## 📋 Scripts Disponibles
+
+```bash
+npm run dev      # Ejecutar en modo desarrollo
+npm run build    # Compilar para producción
+npm start        # Ejecutar build de producción
+npm run lint     # Ejecutar linter
+```
+
+## 🛣️ Rutas de la Aplicación
+
+### Rutas Públicas
+- `/` - Página principal (catálogo de productos)
+- `/login` - Inicio de sesión
+- `/register` - Registro de usuarios
+- `/product/[id]` - Detalle de producto
+
+### Rutas Protegidas (requieren autenticación)
+- `/profile` - Perfil del usuario
+- `/cart` - Carrito de compras
+- `/admin` - Panel de administración (solo admin)
+
+## 🔒 Seguridad
+
+- ✅ Protección de rutas con middleware de NextAuth
+- ✅ Sesiones JWT firmadas y encriptadas
+- ✅ Validación de roles (Admin/User)
+- ✅ Variables de entorno para secretos
+- ✅ HTTPS recomendado en producción
+
+## 🎨 Optimizaciones Implementadas
+
+1. **Imágenes Optimizadas**
+   - Uso de `next/image` para carga lazy y optimización automática
+   - Configuración de dominios remotos permitidos
+
+2. **Code Splitting**
+   - División automática de código por Next.js
+   - Lazy loading de componentes
+
+3. **Rendimiento**
+   - Server-side rendering (SSR)
+   - Static generation para páginas estáticas
+   - Middleware para protección eficiente de rutas
+
+4. **Estado Global**
+   - Redux Toolkit para gestión eficiente del estado
+   - Persistencia de "me gusta" en localStorage
+
+## 📦 Despliegue en Vercel
+
+### Pasos para el Despliegue
+
+1. **Conectar repositorio a Vercel**
+   - Ve a [vercel.com](https://vercel.com)
+   - Importa tu repositorio de GitHub
+
+2. **Configurar variables de entorno**
+   ```
+   NEXTAUTH_URL=https://tu-dominio.vercel.app
+   NEXTAUTH_SECRET=genera-un-secreto-seguro
+   ```
+
+3. **Desplegar**
+   - Vercel desplegará automáticamente
+   - Cada push a main despliega automáticamente
+
+### Generar NEXTAUTH_SECRET
+
+```bash
+openssl rand -base64 32
+```
+
+## 📚 Documentación Adicional
+
+- [ENDPOINTS.md](./ENDPOINTS.md) - Documentación completa de la API
+- [postman_collection.json](./postman_collection.json) - Colección de Postman
+
+## 🧪 Testing
+
+El proyecto está preparado para testing. Puedes agregar tests con:
+- Jest para tests unitarios
+- React Testing Library para tests de componentes
+- Cypress para tests E2E
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor:
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto es de código abierto y está disponible bajo la licencia MIT.
+
+## 👥 Autor
+
+- Juan Camilo Villa Zapata - Desarrollo inicial
+
+##  Documentacion oficial
+
+- [Next.js](https://nextjs.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [FakeStoreAPI](https://fakestoreapi.com/)

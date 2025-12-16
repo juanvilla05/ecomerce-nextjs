@@ -1,0 +1,255 @@
+{
+  "info": {
+    "name": "TiendaApp - FakeStoreAPI",
+    "description": "Colección completa de endpoints para la aplicación TiendaApp",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Autenticación",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"mor_2314\",\n  \"password\": \"83r5^_\"\n}"
+            },
+            "url": {
+              "raw": "https://fakestoreapi.com/auth/login",
+              "protocol": "https",
+              "host": ["fakestoreapi", "com"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Obtener todos los usuarios",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/users"
+          }
+        },
+        {
+          "name": "Obtener usuario por ID",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/users/1"
+          }
+        },
+        {
+          "name": "Crear usuario (Registro)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"username\": \"testuser\",\n  \"password\": \"mypassword123\",\n  \"name\": {\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\"\n  },\n  \"address\": {\n    \"city\": \"New York\",\n    \"street\": \"5th Avenue\",\n    \"number\": 123,\n    \"zipcode\": \"10001\",\n    \"geolocation\": {\n      \"lat\": \"40.7128\",\n      \"long\": \"-74.0060\"\n    }\n  },\n  \"phone\": \"1-234-567-8900\"\n}"
+            },
+            "url": "https://fakestoreapi.com/users"
+          }
+        },
+        {
+          "name": "Actualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"updated@example.com\",\n  \"username\": \"updateduser\"\n}"
+            },
+            "url": "https://fakestoreapi.com/users/1"
+          }
+        },
+        {
+          "name": "Eliminar usuario",
+          "request": {
+            "method": "DELETE",
+            "url": "https://fakestoreapi.com/users/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Productos",
+      "item": [
+        {
+          "name": "Obtener todos los productos",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/products"
+          }
+        },
+        {
+          "name": "Obtener productos limitados",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://fakestoreapi.com/products?limit=12",
+              "protocol": "https",
+              "host": ["fakestoreapi", "com"],
+              "path": ["products"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "12"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener producto por ID",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/products/1"
+          }
+        },
+        {
+          "name": "Crear producto (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Nuevo Producto de Prueba\",\n  \"price\": 99.99,\n  \"description\": \"Descripción detallada del producto\",\n  \"category\": \"electronics\",\n  \"image\": \"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg\"\n}"
+            },
+            "url": "https://fakestoreapi.com/products"
+          }
+        },
+        {
+          "name": "Actualizar producto (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Producto Actualizado\",\n  \"price\": 149.99,\n  \"description\": \"Descripción actualizada\",\n  \"category\": \"electronics\",\n  \"image\": \"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg\"\n}"
+            },
+            "url": "https://fakestoreapi.com/products/1"
+          }
+        },
+        {
+          "name": "Eliminar producto (Admin)",
+          "request": {
+            "method": "DELETE",
+            "url": "https://fakestoreapi.com/products/1"
+          }
+        },
+        {
+          "name": "Obtener categorías",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/products/categories"
+          }
+        },
+        {
+          "name": "Productos por categoría",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/products/category/electronics"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Carrito",
+      "item": [
+        {
+          "name": "Obtener todos los carritos",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/carts"
+          }
+        },
+        {
+          "name": "Obtener carrito por ID",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/carts/1"
+          }
+        },
+        {
+          "name": "Obtener carritos de usuario",
+          "request": {
+            "method": "GET",
+            "url": "https://fakestoreapi.com/carts/user/1"
+          }
+        },
+        {
+          "name": "Crear carrito (Checkout)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"date\": \"2024-12-15\",\n  \"products\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    },\n    {\n      \"productId\": 5,\n      \"quantity\": 1\n    }\n  ]\n}"
+            },
+            "url": "https://fakestoreapi.com/carts"
+          }
+        },
+        {
+          "name": "Actualizar carrito",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"date\": \"2024-12-15\",\n  \"products\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 3\n    }\n  ]\n}"
+            },
+            "url": "https://fakestoreapi.com/carts/1"
+          }
+        },
+        {
+          "name": "Eliminar carrito",
+          "request": {
+            "method": "DELETE",
+            "url": "https://fakestoreapi.com/carts/1"
+          }
+        }
+      ]
+    }
+  ]
+}
