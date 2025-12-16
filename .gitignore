@@ -1,5 +1,5 @@
 # Dependencies
-node_modules/
+/node_modules
 /.pnp
 .pnp.js
 
@@ -24,18 +24,14 @@ yarn-error.log*
 
 # Local env files
 .env*.local
-.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Vercel
+# Vercel (no deployment)
 .vercel
 
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~

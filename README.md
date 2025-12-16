@@ -2,10 +2,6 @@
 
 Aplicación de comercio electrónico moderna construida con Next.js 15, TypeScript, Redux y NextAuth.
 
-🔗 **Demo en vivo:** https://ecomerce-nextjs-one.vercel.app  
-📦 **Repositorio:** https://github.com/juanvilla05/ecomerce-nextjs
-📄 **Guía de Deployment:** [DEPLOYMENT.md](./DEPLOYMENT.md)
-
 ## 🚀 Características Principales
 
 ### ✨ Funcionalidades Implementadas
@@ -43,12 +39,12 @@ Aplicación de comercio electrónico moderna construida con Next.js 15, TypeScri
 
 ## 🏗️ Tecnologías Utilizadas
 
-- **Framework:** Next.js 16.0.10 (App Router)
+- **Framework:** Next.js 15.5.9 (App Router)
 - **Lenguaje:** TypeScript 5
 - **Estado Global:** Redux Toolkit 2.11.2
 - **Autenticación:** NextAuth 5.0.0-beta.30
-- **Estilos:** SCSS Modules + CSS Custom Properties
-- **UI:** React 19.2.1
+- **Estilos:** SCSS Modules + Sass
+- **Runtime:** React 18.3.1
 - **API:** FakeStoreAPI (https://fakestoreapi.com)
 
 ## 📁 Estructura del Proyecto
@@ -59,7 +55,8 @@ prueba/
 │   ├── app/                    # Rutas de la aplicación
 │   │   ├── admin/              # Panel de administración
 │   │   ├── api/                # Rutas API
-│   │   │   └── auth/           # Endpoints de NextAuth
+│   │   │   ├── auth/           # Endpoints de NextAuth
+│   │   │   └── products/       # API de productos
 │   │   ├── cart/               # Carrito de compras
 │   │   ├── components/         # Componentes reutilizables
 │   │   ├── hooks/              # Custom hooks
@@ -88,7 +85,7 @@ prueba/
 
 1. **Clonar el repositorio**
 ```bash
-git clone <tu-repositorio>
+git clone https://github.com/juanvilla05/ecomerce-nextjs.git
 cd prueba
 ```
 
@@ -105,7 +102,7 @@ cp .env.example .env.local
 Edita `.env.local` con tus valores:
 ```env
 NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=tu-secreto-super-seguro-aqui
+NEXTAUTH_SECRET=QwTvF4Nz7ZeyOEa0d69+9tExjCyRsk1VHeut0Ik4KSM=
 ```
 
 4. **Ejecutar en desarrollo**
@@ -123,8 +120,9 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 - **Permisos:** Acceso completo + Panel Admin
 
 ### Usuarios Regulares
-- **Usuario:** `johnd`, `derek`, `david_r`
-- **Contraseñas:** Ver [ENDPOINTS.md](./ENDPOINTS.md)
+- **Usuario:** `johnd` | **Contraseña:** `m38rmF$`
+- **Usuario:** `derek` | **Contraseña:** `jklg*_56`
+- **Usuario:** `david_r` | **Contraseña:** `3478*#54`
 - **Permisos:** Acceso a perfil y carrito
 
 ## 📋 Scripts Disponibles
@@ -176,46 +174,6 @@ npm run lint     # Ejecutar linter
    - Redux Toolkit para gestión eficiente del estado
    - Persistencia de "me gusta" en localStorage
 
-## 📦 Despliegue en Vercel
-
-### Configuración Rápida
-
-1. **Conectar con GitHub:**
-   - Ve a [vercel.com](https://vercel.com)
-   - Inicia sesión con GitHub
-   - Importa el repositorio `ecomerce-nextjs`
-
-2. **Variables de Entorno Requeridas:**
-   ```env
-   NEXTAUTH_URL=https://tu-dominio.vercel.app
-   NEXTAUTH_SECRET=tu-secreto-generado
-   ```
-
-3. **Generar NEXTAUTH_SECRET:**
-   ```bash
-   openssl rand -base64 32
-   ```
-
-4. **Deploy:**
-   - Vercel desplegará automáticamente
-   - El despliegue toma 2-3 minutos
-   - Cada push a `main` despliega automáticamente
-
-### Actualizar NEXTAUTH_URL después del primer despliegue
-
-Después del primer despliegue, Vercel te dará una URL (ej: `https://ecomerce-nextjs-xyz.vercel.app`):
-
-1. Ve a tu proyecto en Vercel
-2. Settings → Environment Variables
-3. Edita `NEXTAUTH_URL` con la URL real que te dio Vercel
-4. Redeploy el proyecto
-
-### Despliegues Automáticos
-
-✅ Cada `git push` a la rama `main` despliega automáticamente  
-✅ Preview deployments para Pull Requests  
-✅ Rollback instantáneo a versiones anteriores
-
 ## 📚 Documentación Adicional
 
 - [ENDPOINTS.md](./ENDPOINTS.md) - Documentación completa de la API
@@ -243,9 +201,9 @@ Este proyecto es de código abierto y está disponible bajo la licencia MIT.
 
 ## 👥 Autor
 
-- Juan Camilo Villa Zapata - Desarrollo inicial
+Juan Camilo Villa Zapata - Desarrollo inicial
 
-##  Documentacion oficial
+## 📖 Documentación Oficial
 
 - [Next.js](https://nextjs.org/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
