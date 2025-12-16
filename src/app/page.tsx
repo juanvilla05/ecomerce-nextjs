@@ -1,3 +1,7 @@
+/**
+ * Página Principal (Home)
+ * Lista todos los productos disponibles obtenidos de FakeStoreAPI
+ */
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -23,6 +27,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Obtiene los productos al cargar la página
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -46,6 +51,7 @@ export default function HomePage() {
   return (
     <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
       <h1>✨ Descubre Nuestros Productos ✨</h1>
+      {/* Grid responsive de productos */}
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 

@@ -1,3 +1,8 @@
+/**
+ * Configuración de autenticación con NextAuth v5
+ * Maneja login con credenciales contra FakeStoreAPI
+ */
+
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import type { NextAuthConfig } from "next-auth";
@@ -10,6 +15,7 @@ export const authConfig: NextAuthConfig = {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" }
       },
+      // Valida credenciales contra FakeStoreAPI y retorna datos del usuario
       async authorize(credentials) {
         if (!credentials?.username || !credentials?.password) {
           throw new Error('Por favor ingresa usuario y contraseña');
@@ -18,7 +24,7 @@ export const authConfig: NextAuthConfig = {
         try {
           console.log('🔐 Intentando autenticar:', credentials.username);
           
-          // Autenticación con FakeStoreAPI
+          // Llamada a la API de FakeStore para validar credenciales
           const response = await fetch('https://fakestoreapi.com/auth/login', {
             method: 'POST',
             headers: {
@@ -39,11 +45,12 @@ export const authConfig: NextAuthConfig = {
           const data = await response.json();
 
           if (data.token) {
-            // Determinar el rol basado en el usuario
+            // Asignar rol: 'mor_2314' es admin, los demás son users
             const role = credentials.username === 'mor_2314' ? 'admin' : 'user';
             
             console.log('✅ Login exitoso, rol:', role);
             
+            // Retornar objeto de usuario que se guardará en la sesión
             return {
               id: credentials.username as string,
               name: credentials.username as string,
@@ -65,9 +72,10 @@ export const authConfig: NextAuthConfig = {
     })
   ],
   pages: {
-    signIn: '/login',
+    signIn: '/login', // Ruta personalizada de login
   },
   callbacks: {
+    // Agrega información personalizada al JWT
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -76,6 +84,7 @@ export const authConfig: NextAuthConfig = {
       }
       return token;
     },
+    // Hace disponible la info del JWT en la sesión del cliente
     async session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.id as string;
@@ -86,10 +95,11 @@ export const authConfig: NextAuthConfig = {
     },
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt", // Usar tokens JWT en lugar de DB
     maxAge: 30 * 24 * 60 * 60, // 30 días
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
 
+// Exportar handlers para rutas API y funciones de autenticación
 export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);

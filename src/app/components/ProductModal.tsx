@@ -1,3 +1,8 @@
+/**
+ * Modal de Producto
+ * Muestra los detalles completos de un producto en un modal
+ * Permite añadir el producto al carrito
+ */
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -31,6 +36,7 @@ export default function ProductModal({ productId, isOpen, onClose }: ProductModa
   const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
 
+  // Carga los detalles del producto cuando se abre el modal
   useEffect(() => {
     if (isOpen && productId) {
       setLoading(true);
@@ -52,6 +58,7 @@ export default function ProductModal({ productId, isOpen, onClose }: ProductModa
     }
   }, [isOpen, productId]);
 
+  // Añade el producto al carrito usando Redux
   const handleAddToCart = () => {
     if (product) {
       dispatch(addItem({ 
@@ -64,6 +71,7 @@ export default function ProductModal({ productId, isOpen, onClose }: ProductModa
     }
   };
 
+  // Cierra el modal al hacer clic fuera del contenido
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();

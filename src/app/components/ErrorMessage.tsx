@@ -1,3 +1,7 @@
+/**
+ * Componente de error
+ * Muestra mensajes de error con opción de reintentar
+ */
 interface ErrorMessageProps {
   message: string;
   onRetry?: () => void;
@@ -27,6 +31,7 @@ export default function ErrorMessage({ message, onRetry }: ErrorMessageProps) {
       }}>
         {message}
       </p>
+      {/* Botón opcional para reintentar */}
       {onRetry && (
         <button
           onClick={onRetry}

@@ -1,3 +1,7 @@
+/**
+ * Página de Login
+ * Formulario de autenticación con NextAuth usando credenciales
+ */
 "use client";
 
 import { useState } from 'react';
@@ -12,6 +16,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  // Maneja el envío del formulario de login
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -19,6 +24,7 @@ export default function Login() {
     setLoading(true);
 
     try {
+      // Autentica con NextAuth
       const result = await signIn('credentials', {
         username,
         password,
@@ -34,6 +40,7 @@ export default function Login() {
       if (result?.ok) {
         setSuccess(`¡Bienvenido ${username}! Redirigiendo...`);
         
+        // Redirige al home después de login exitoso
         setTimeout(() => {
           router.push('/');
           router.refresh();
@@ -137,6 +144,7 @@ export default function Login() {
     <div style={containerStyle}>
       <div style={formWrapperStyle}>
         <h1 style={titleStyle}>🛍️ Iniciar Sesión</h1>
+        {/* Credenciales de prueba */}
         <p style={{ textAlign: 'center', marginBottom: '1.5rem', fontSize: '0.9rem', color: '#666', background: '#f8f9fa', padding: '1rem', borderRadius: '8px' }}>
           <strong>Usuario de prueba:</strong> mor_2314<br />
           <strong>Contraseña:</strong> 83r5^_
@@ -168,6 +176,7 @@ export default function Login() {
               disabled={loading}
             />
           </div>
+          {/* Mensajes de error y éxito */}
           {error && <p style={errorStyle}>❌ {error}</p>}
           {success && <p style={successStyle}>✅ {success}</p>}
           <button type="submit" style={submitButtonStyle} disabled={loading}>
