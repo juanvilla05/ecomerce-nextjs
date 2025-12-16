@@ -28,12 +28,20 @@ export async function POST(request: NextRequest) {
       success: response.ok,
       status: response.status,
       hasToken: !!data.token,
-      data: data,
+      token: data.token,
+      username: username,
     });
   } catch (error) {
-    console.error('�� Test Login - Error:', error);
+    console.error('🧪 Test Login - Error:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    
     return NextResponse.json(
-      { error: 'Error en test login', details: String(error) },
+      { 
+        error: 'Error en test login', 
+        details: errorMessage,
+        stack: errorStack 
+      },
       { status: 500 }
     );
   }
