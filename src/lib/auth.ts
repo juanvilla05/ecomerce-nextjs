@@ -1,8 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import type { NextAuthConfig } from "next-auth";
 
-export const authConfig: NextAuthConfig = {
+export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -15,7 +14,7 @@ export const authConfig: NextAuthConfig = {
         
         if (!credentials?.username || !credentials?.password) {
           console.log('❌ Missing credentials');
-          return null;
+          throw new Error('Credenciales incompletas');
         }
 
         try {
@@ -36,7 +35,7 @@ export const authConfig: NextAuthConfig = {
 
           if (!response.ok) {
             console.log('❌ API returned non-ok status:', response.status);
-            return null;
+            throw new Error('Credenciales inválidas');
           }
 
           const data = await response.json();
@@ -58,10 +57,10 @@ export const authConfig: NextAuthConfig = {
           }
 
           console.log('❌ No token in response');
-          return null;
+          throw new Error('No se recibió token');
         } catch (error) {
           console.error('💥 Error en autenticación:', error);
-          return null;
+          throw error;
         }
       }
     })
@@ -91,9 +90,12 @@ export const authConfig: NextAuthConfig = {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 días
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  trustHost: true, // Importante para Vercel
-  debug: true, // Habilitar debug en producción temporalmente
-};
+  trustHost: true,
+  debug: true,
+});
 
-export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
+export const authConfig = {
+  providers: [],
+  pages: { signIn: '/login' },
+  trustHost: true,
+};
