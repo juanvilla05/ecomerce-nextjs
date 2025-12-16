@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
- import type { NextAuthConfig } from "next-auth";
+import type { NextAuthConfig } from "next-auth";
 
 export const authConfig: NextAuthConfig = {
   providers: [
@@ -12,10 +12,12 @@ export const authConfig: NextAuthConfig = {
       },
       async authorize(credentials) {
         if (!credentials?.username || !credentials?.password) {
-          return null;
+          throw new Error('Por favor ingresa usuario y contraseña');
         }
 
         try {
+          console.log('🔐 Intentando autenticar:', credentials.username);
+          
           // Autenticación con FakeStoreAPI
           const response = await fetch('https://fakestoreapi.com/auth/login', {
             method: 'POST',
@@ -28,8 +30,10 @@ export const authConfig: NextAuthConfig = {
             }),
           });
 
+          console.log('📡 Respuesta API:', response.status);
+
           if (!response.ok) {
-            return null;
+            throw new Error('Credenciales inválidas');
           }
 
           const data = await response.json();
@@ -37,6 +41,8 @@ export const authConfig: NextAuthConfig = {
           if (data.token) {
             // Determinar el rol basado en el usuario
             const role = credentials.username === 'mor_2314' ? 'admin' : 'user';
+            
+            console.log('✅ Login exitoso, rol:', role);
             
             return {
               id: credentials.username as string,
@@ -47,10 +53,13 @@ export const authConfig: NextAuthConfig = {
             };
           }
 
-          return null;
+          throw new Error('No se recibió token de autenticación');
         } catch (error) {
-          console.error('Error en autenticación:', error);
-          return null;
+          console.error('❌ Error en autenticación:', error);
+          if (error instanceof Error) {
+            throw error;
+          }
+          throw new Error('Error al iniciar sesión');
         }
       }
     })

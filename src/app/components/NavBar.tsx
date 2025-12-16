@@ -21,7 +21,9 @@ export default function NavBar() {
     return (
       <nav className={styles.nav}>
         <div className={styles.logo}>
-          <Link href="/">🛍️ MyStore</Link>
+          <Link href="/">
+            <span className={styles.emoji}>🛍️</span> MyStore
+          </Link>
         </div>
         <ul>
           <li>Cargando...</li>
@@ -33,7 +35,9 @@ export default function NavBar() {
   return (
     <nav className={styles.nav}>
       <div className={styles.logo}>
-        <Link href="/">🛍️ MyStore</Link>
+        <Link href="/">
+          <span className={styles.emoji}>🛍️</span> MyStore
+        </Link>
       </div>
       
       <ul>
