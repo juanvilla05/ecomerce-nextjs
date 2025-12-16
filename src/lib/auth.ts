@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+const NEXTAUTH_SECRET_FALLBACK = "QwTvF4Nz7ZeyOEa0d69+9tExjCyRsk1VHeut0Ik4KSM=";
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     CredentialsProvider({
@@ -90,6 +92,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 días
   },
+  secret: process.env.NEXTAUTH_SECRET || NEXTAUTH_SECRET_FALLBACK,
   trustHost: true,
   debug: true,
 });
