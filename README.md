@@ -1,9 +1,10 @@
 # 🛍️ Plataforma de E-Commerce - Next.js
 
-Aplicación de comercio electrónico moderna construida con Next.js 16, TypeScript, Redux y NextAuth.
+Aplicación de comercio electrónico moderna construida con Next.js 15, TypeScript, Redux y NextAuth.
 
-🔗 **Demo en vivo:** [Próximamente en Vercel]  
+🔗 **Demo en vivo:** https://ecomerce-nextjs-one.vercel.app  
 📦 **Repositorio:** https://github.com/juanvilla05/ecomerce-nextjs
+📄 **Guía de Deployment:** [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## 🚀 Características Principales
 
